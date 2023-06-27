@@ -79,7 +79,7 @@ func (person *Person) Delete() (err error) {
 
 func main() {
 	// setting a post for our CREATE function
-	person := Person{First_name: "Mavis", Last_name: "Beacon", Gender: "Female", Date_of_birth: "2002-10-14", Email: "mavisbeacon43@gmail.com"}
+	person := Person{First_name: "Oprah", Last_name: "Winfrey", Gender: "Female", Date_of_birth: "2002-10-14", Email: "mavisbeacon43@gmail.com"}
 	fmt.Println(person)
 
 	person.Create()
