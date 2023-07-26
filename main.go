@@ -28,7 +28,7 @@ func init() {
 
 // getting all persons (select your own limit)
 func Persons(limit int) (persons []Person, err error) {
-	rows, err := Db.Query("SELECT first_name, last_name, gender, date_of_birth, email FROM person LIMIT $1", limit)
+	rows, err := Db.Query("SELECT id, first_name, last_name, gender, date_of_birth, email FROM person LIMIT $1", limit)
 	if err != nil {
 		return
 	}
@@ -36,7 +36,7 @@ func Persons(limit int) (persons []Person, err error) {
 
 	for rows.Next() {
 		people := Person{}
-		err = rows.Scan(&people.First_name, &people.Last_name, &people.Gender, &people.Date_of_birth, &people.Email)
+		err = rows.Scan(&people.Id, &people.First_name, &people.Last_name, &people.Gender, &people.Date_of_birth, &people.Email)
 		if err != nil {
 			return
 		}
