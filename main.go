@@ -26,7 +26,7 @@ func init() {
 	}
 }
 
-// getting all persons (a lmit of your choice)
+// getting all persons (select your own limit)
 func Persons(limit int) (persons []Person, err error) {
 	rows, err := Db.Query("SELECT first_name, last_name, gender, date_of_birth, email FROM person LIMIT $1", limit)
 	if err != nil {
@@ -45,7 +45,7 @@ func Persons(limit int) (persons []Person, err error) {
 	return
 }
 
-// creating a psot
+// creating a post
 func (person *Person) Create() (err error) {
 	statement := "INSERT INTO person (first_name, last_name, gender, date_of_birth, email) VALUES ($1, $2, $3, $4, $5) RETURNING id"
 	stmt, err := Db.Prepare(statement)
@@ -79,18 +79,18 @@ func (person *Person) Delete() (err error) {
 
 func main() {
 	// setting a post for our CREATE function
-	person := Person{First_name: "Oprah", Last_name: "Winfrey", Gender: "Female", Date_of_birth: "2002-10-14", Email: "mavisbeacon43@gmail.com"}
+	person := Person{First_name: "Jennifer", Last_name: "Hennessy", Gender: "Female", Date_of_birth: "2002-10-14", Email: "mavisbeacon43@gmail.com"}
 	fmt.Println(person)
 
 	person.Create()
 	fmt.Println(person)
 
-	// setting up our GetPerson function
+	// setting up GetPerson function
 	readPerson, _ := GetPerson(10)
 	fmt.Println(readPerson)
 
-	// setting up our Update function
-	// first we use the GetPerson function to view before we update
+	/* setting up Update function
+	first we use the GetPerson function to view before we update */
 	viewPerson, _ := GetPerson(16)
 	fmt.Println(viewPerson)
 	viewPerson.First_name = "Jack"
